@@ -24,7 +24,7 @@ process trigger_next_pipeline {
     script:
     // get the table name from the previous process channel and combine with results location to get full path of table
     table_full_path="${{params.job_results_location}}/$random_table"
-    println
+    println $table_full_path
     """
     cloudos job run \
         --job-name "job-triggred-from-workflow-1-with-cloudos-cli" \
