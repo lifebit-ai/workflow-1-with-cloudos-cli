@@ -19,13 +19,13 @@ process trigger_next_pipeline {
     container 'quay.io/lifebitaiorg/cloudos-cli:v2.6.0'
 
     input:
-    file(random_table) into ch_random_table
+    file(random_table) from ch_random_table
     
     script:
     // get the table name from NF channel and combine with results location to get s3 path
     table_full_path="${{JOB_RESULTS_LOCATION}}/$random_table"
     """
-cloudos job run \
+    cloudos job run \
         --job-name "job-triggred-from-workflow-1-with-cloudos-cli" \
         --cloudos-url ${params.cloudos_url} \
         --workspace-id ${params.cloudos_workspace} \
