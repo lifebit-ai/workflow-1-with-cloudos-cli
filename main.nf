@@ -26,13 +26,14 @@ process trigger_next_pipeline {
     table_full_path="${{params.job_results_location}}/results/$random_table"
     println table_full_path
     """
+    CLOUDOS_APIKEY=${params.cloudos_apikey}
     cloudos job run \
         --job-name "job-triggred-from-workflow-1-with-cloudos-cli" \
         --cloudos-url ${params.cloudos_url} \
         --workspace-id ${params.cloudos_workspace} \
         --project-name ${params.cloudos_project_name} \
         --workflow-name ${params.cloudos_workflow_name} \
-        --apikey ${params.cloudos_apikey} \
+        --apikey \$CLOUDOS_APIKEY \
         --batch \
         --execution-platform ${params.cloudos_execution_platform} \
         --parameter input=${table_full_path}
