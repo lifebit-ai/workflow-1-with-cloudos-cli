@@ -34,6 +34,7 @@ process trigger_next_pipeline {
         --workflow-name ${params.cloudos_workflow_name} \
         --apikey ${params.cloudos_apikey} \
         --batch \
+        --execution-platform ${params.cloudos_execution_platform} \
         --parameter input=${table_full_path}
     """
 }
